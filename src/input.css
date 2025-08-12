@@ -137,3 +137,5 @@ body {
     width: clamp(160px, 52vw, 220px); 
   }
 }
+
+#projects .accordion-panel.hidden { display: none !important; }
