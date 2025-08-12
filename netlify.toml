@@ -1,3 +1,6 @@
 [build]
-  command = "npx tailwindcss -i ./src/input.css -o ./assets/tailwind.css --minify"
+  command = "npm install --no-audit --no-fund && npm run build"
   publish = "."
+
+[build.environment]
+  NODE_VERSION = "18"
