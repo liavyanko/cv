@@ -521,40 +521,35 @@
         // כפתור הורדת PDF גם במובייל
         document.getElementById('downloadBtnMobile')?.addEventListener('click', () => window.print());
 
-          // אקורדיון ממוקד ל־#projects עם פתוח יחיד
+      
+          // Accordion יחיד ב־#projects עם Delegation ונטרול מאזינים גלובליים
           (() => {
-            const root = document.querySelector('#projects');
+            const root = document.getElementById('projects');
             if (!root) return;
           
-            // האזנה ממוקדת רק לכפתורים בתוך #projects
-            root.querySelectorAll('.toggle-details').forEach(btn => {
-              btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
+            root.addEventListener('click', (e) => {
+              const btn = e.target.closest('.toggle-details');
+              if (!btn || !root.contains(btn)) return;
           
-                const targetId = btn.getAttribute('aria-controls');
-                const panel = root.querySelector(`#${CSS.escape(targetId)}`);
-                if (!panel) return;
+              e.preventDefault();
+              e.stopPropagation();
           
-                const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+              const targetId = btn.getAttribute('aria-controls');
+              const panel = document.getElementById(targetId);
+              if (!panel) return;
           
-                // סגור הכל בתוך #projects בלבד
-                root.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
-                root.querySelectorAll('.toggle-details').forEach(b => {
-                  b.setAttribute('aria-expanded', 'false');
-                  const ic = b.querySelector('[data-lucide]');
-                  if (ic) ic.style.transform = 'rotate(0deg)';
-                });
+              const wasOpen = btn.getAttribute('aria-expanded') === 'true';
           
-                // פתח רק את הנוכחי אם היה סגור
-                if (!isExpanded) {
-                  panel.classList.remove('hidden');
-                  btn.setAttribute('aria-expanded', 'true');
-                  const ic = btn.querySelector('[data-lucide]');
-                  if (ic) ic.style.transform = 'rotate(180deg)';
-                }
-              }, { passive: true });
-            });
+              // סוגר הכל בתוך #projects בלבד
+              root.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
+              root.querySelectorAll('.toggle-details[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+          
+              // פותח רק אם היה סגור
+              if (!wasOpen) {
+                panel.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+              }
+            }, { passive: false });
           })();
 
 
