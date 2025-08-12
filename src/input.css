@@ -4,6 +4,15 @@
 
 /* אפשר להשאיר את ה-print styles שלך בתוך ה-HTML כמו היום */
 
+/* צמצום מרווח בין ה-memoji לבין ה-About Me */
+.hero-image {
+  margin-bottom: 20px; /* במקום ערך גבוה שהיה קודם */
+}
+
+#about {
+  margin-top: 20px; /* במקום ערך גבוה שהיה קודם */
+}
+
 /* ===== Contact section layout (Grid) ===== */
 .contact-section {
   display: grid;
