@@ -4,16 +4,24 @@
 
 /* אפשר להשאיר את ה-print styles שלך בתוך ה-HTML כמו היום */
 
-/* צמצום מרווח בין ה-memoji לבין ה-About Me */
-@media (max-width: 768px) {
-  .hero-image {
-    margin-bottom: 4px !important;
-  }
-  #about {
-    margin-top: 4px !important;
-  }
+/* צמצום שטח מת בין ה-hero לבין ה-about */
+.hero {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
+.hero-content {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.hero-image {
+  margin-bottom: 0 !important;
+}
+
+#about {
+  margin-top: 0 !important;
+}
 /* ===== Contact section layout (Grid) ===== */
 .contact-section {
   display: grid;
