@@ -540,6 +540,30 @@
             if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
           });
         });
+
+            <script>
+            // פתיחת/סגירת הבועה בטאפ במובייל (לא פוגע ב-hover של דסקטופ)
+            document.addEventListener('DOMContentLoaded', () => {
+              const tiger = document.querySelector('.tiger-wrapper');
+              if (!tiger) return;
+          
+              // טאפ/קליק – Toggle
+              tiger.addEventListener('click', () => {
+                // רק במסכים צרים נפעיל את זה; בדסקטופ נשאיר ל-hover לעבוד
+                if (window.matchMedia('(max-width: 768px)').matches) {
+                  tiger.classList.toggle('show-bubble');
+                }
+              });
+          
+              // אופציונלי: סגירה בלחיצה מחוץ לנמר
+              document.addEventListener('click', (e) => {
+                if (!window.matchMedia('(max-width: 768px)').matches) return;
+                if (!tiger.contains(e.target)) tiger.classList.remove('show-bubble');
+              }, true);
+            });
+          </script>
+
+    
     </script>
   </body>
 </html>
