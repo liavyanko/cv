@@ -22,13 +22,11 @@
     
     <link rel="preload" as="image" href="assets/memoji.webp" imagesrcset="assets/memoji.webp 1x" imagesizes="(max-width: 640px) 14rem, 16rem">
     
-    <style>
-     html, body { height: 100%; }
-      html { scroll-snap-type: y mandatory; }
-      section { scroll-snap-align: start; scroll-snap-stop: always; }
-
-/* (אופציונלי) אם אתה מריץ Lenis, אל תכריח smooth כאן */
-    </style>
+      <style>
+        html, body { height: 100%; }
+        html { scroll-snap-type: y mandatory; scroll-padding-top: 56px; } /* מפצה על גובה הסרגל */
+        section { scroll-snap-align: start; scroll-snap-stop: always; }
+      </style>
 
     <link rel="stylesheet" href="assets/tailwind.css">
 
@@ -123,7 +121,7 @@
       <!-- SECTION 1: HERO (name + title + memoji) -->
       <section id="hero" class="relative min-h-screen snap-start [scroll-snap-stop:always] flex items-start">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 to-transparent dark:from-slate-900"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-14">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
           <div class="max-w-3xl mx-auto text-center space-y-4 sm:space-y-5">
             <h2 id="heroTitle" class="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-300">
               Liav Yanko
