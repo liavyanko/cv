@@ -521,19 +521,32 @@
         // כפתור הורדת PDF גם במובייל
         document.getElementById('downloadBtnMobile')?.addEventListener('click', () => window.print());
 
-            // סגור פאנלים אחרים רק אם הם באותה קטגוריה
-            document.querySelectorAll('.toggle-details').forEach(btn => {
+            // פתיחה/סגירה של פאנלים כך שרק אחד ייפתח בכל פעם
+            document.querySelectorAll('#projects .toggle-details').forEach(btn => {
               btn.addEventListener('click', () => {
                 const id = btn.getAttribute('aria-controls');
                 const panel = document.getElementById(id);
                 if (!panel) return;
             
                 const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', String(!expanded));
-                panel.classList.toggle('hidden');
             
-                const icon = btn.querySelector('[data-lucide]');
-                if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+                // סגור את כל שאר הפאנלים ב-#projects
+                document.querySelectorAll('#projects .accordion-panel').forEach(p => {
+                  p.classList.add('hidden');
+                });
+                document.querySelectorAll('#projects .toggle-details').forEach(b => {
+                  b.setAttribute('aria-expanded', 'false');
+                  const icon = b.querySelector('[data-lucide]');
+                  if (icon) icon.style.transform = 'rotate(0deg)';
+                });
+            
+                // פתח את הפאנל הנבחר אם הוא לא היה פתוח קודם
+                if (!expanded) {
+                  panel.classList.remove('hidden');
+                  btn.setAttribute('aria-expanded', 'true');
+                  const icon = btn.querySelector('[data-lucide]');
+                  if (icon) icon.style.transform = 'rotate(180deg)';
+                }
               });
             });
 
