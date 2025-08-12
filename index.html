@@ -61,6 +61,19 @@
       html { scroll-behavior: auto !important; }
       }
       
+      html {
+        scroll-behavior: smooth;
+      }
+      #snapRoot {
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: y mandatory;
+        scroll-padding-top: 4rem; /* להתאמת גובה ההדר */
+      }
+      section {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+      
     </style>
 
     <!-- Favicon -->
@@ -101,7 +114,7 @@
     </header>
 
     <!-- Snap Container: full-screen sections -->
-    <main id="snapRoot" class="h-dvh overflow-y-auto [scroll-snap-type:y_proximity] scroll-pt-12">
+    <main id="snapRoot" class="h-dvh overflow-y-auto scroll-smooth [scroll-snap-type:y_mandatory]">
       <!-- SECTION 1: HERO (name + title + memoji) -->
       <section id="hero" class="relative min-h-screen snap-start [scroll-snap-stop:always] flex items-start">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 to-transparent dark:from-slate-900"></div>
@@ -132,8 +145,11 @@
               <a href="mailto:liavyanko@gmail.com" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition" aria-label="Send Email">
                 <i data-lucide="mail" class="h-4 w-4"></i><span>Email</span>
               </a>
-              <a href="tel:+972509361133" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition" aria-label="Call">
-                <i data-lucide="phone" class="h-4 w-4"></i><span>Call</span>
+              <a href="assets/LiavYankoCV.pdf" target="_blank" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 text-sm shadow-soft transition" title="View/Download CV">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                View CV
               </a>
               <a href="https://wa.me/972509361133?text=Hi%20Liav%2C%20I%27m%20interested%20in%20your%20profile" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition" aria-label="WhatsApp">
                 <i data-lucide="message-circle" class="h-4 w-4"></i><span>WhatsApp</span>
@@ -324,8 +340,20 @@
           </div>
         </div>
       </section>
+      
+      <!-- SECTION 5: press -->
+      <section id="press" class="relative min-h-screen snap-start flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl font-bold mb-8 text-brand-600 dark:text-brand-400">In the Press</h2>
+          <ul class="space-y-4 text-lg">
+            <li><a href="https://www.ynet.co.il/news/article/yokra13855707" target="_blank" class="text-brand-600 hover:underline">Ynet – כתבה ראשונה על הפרויקט</a></li>
+            <li><a href="https://www.ynet.co.il/news/article/b1anmvjun" target="_blank" class="text-brand-600 hover:underline">Ynet – כתבה שנייה על הפרויקט</a></li>
+            <li><a href="https://www.ynet.co.il/news/article/sjyxx9bgeg" target="_blank" class="text-brand-600 hover:underline">Ynet – כתבה שלישית על הפרויקט</a></li>
+          </ul>
+        </div>
+      </section>
 
-      <!-- SECTION 5: CONTACT CTA -->
+      <!-- SECTION 6: CONTACT CTA -->
       <section id="contact" class="relative min-h-screen snap-start [scroll-snap-stop:always] grid place-items-center">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 to-transparent dark:from-slate-900"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
