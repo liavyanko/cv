@@ -1,0 +1,7 @@
+{
+  "name": "liav-resume",
+  "private": true,
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/input.css -o ./assets/tailwind.css --minify"
+  }
+}
