@@ -521,28 +521,21 @@
         // כפתור הורדת PDF גם במובייל
         document.getElementById('downloadBtnMobile')?.addEventListener('click', () => window.print());
 
-        // Accordions (Projects/Press/More + Experience)
-        document.querySelectorAll('.toggle-details').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const id = btn.getAttribute('aria-controls');
-            const panel = document.getElementById(id);
-            if (!panel) return;
-        
-            // סגור פאנלים אחרים באותו סקשן בלבד
-            const scope = btn.closest('section') || document;
-            scope.querySelectorAll('.accordion-panel').forEach(p => {
-              if (p !== panel) p.classList.add('hidden');
+            // סגור פאנלים אחרים רק אם הם באותה קטגוריה
+            document.querySelectorAll('.toggle-details').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const id = btn.getAttribute('aria-controls');
+                const panel = document.getElementById(id);
+                if (!panel) return;
+            
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', String(!expanded));
+                panel.classList.toggle('hidden');
+            
+                const icon = btn.querySelector('[data-lucide]');
+                if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+              });
             });
-        
-            const expanded = btn.getAttribute('aria-expanded') === 'true';
-            btn.setAttribute('aria-expanded', String(!expanded));
-            panel.classList.toggle('hidden');
-        
-            // סיבוב האייקון
-            const icon = btn.querySelector('[data-lucide]');
-            if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
-          });
-        });
 
 
             // פתיחת/סגירת הבועה בטאפ במובייל (לא פוגע ב-hover של דסקטופ)
