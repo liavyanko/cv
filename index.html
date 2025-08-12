@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" dir="ltr">
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.28/bundled/lenis.min.js" defer></script>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,29 +7,23 @@
     <meta name="description" content="Interactive resume site for Liav Yanko — Project Manager with proven success in the Israeli Air Force and Intelligence Corps. Agile leadership, product development, geo‑data analytics, and UI/UX." />
     <link rel="canonical" href="https://liavyanko.netlify.app/">
     <meta name="theme-color" content="#0f172a">
-    
-    <!-- Open Graph – ודא שיש קובץ אמיתי -->
-    <meta property="og:image" content="https://liavyanko.netlify.app/assets/og-image.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Liav Yanko — Interactive Resume" />
+    <meta property="og:description" content="Project Manager (IAF + Intelligence Corps). Agile leadership, product development, geo‑data analytics, UI/UX." />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://liavyanko.netlify.app/">
-    <meta property="og:site_name" content="Liav Yanko — Interactive Resume">
-    
+    <meta property="og:image" content="https://liavyanko.netlify.app/assets/og-image.png">
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Liav Yanko — Interactive Resume">
     <meta name="twitter:description" content="Project Manager (IAF & Intelligence Corps)...">
     <meta name="twitter:image" content="https://liavyanko.netlify.app/assets/og-image.png">
-    
-    <link rel="preload" as="image" href="assets/memoji.webp" imagesrcset="assets/memoji.webp 1x" imagesizes="(max-width: 640px) 14rem, 16rem">
-    
-      <style>
-        html, body { height: 100%; }
-        html { scroll-snap-type: y mandatory; scroll-padding-top: 56px; } /* מפצה על גובה הסרגל */
-        section { scroll-snap-align: start; scroll-snap-stop: always; }
-      </style>
 
+    <!-- Tailwind (ה־CSS שנבנה אצלך בפרויקט) -->
     <link rel="stylesheet" href="assets/tailwind.css">
 
-    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,44 +32,19 @@
     <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest" defer></script>
 
-    <!-- OpenGraph / Twitter -->
-    <meta property="og:title" content="Liav Yanko — Interactive Resume" />
-    <meta property="og:description" content="Project Manager (IAF + Intelligence Corps). Agile leadership, product development, geo‑data analytics, UI/UX." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <!-- Print styles for clean PDF export -->
+    <!-- בסיס גלילה חלקה וריווחים נכונים מול ההדר -->
     <style>
-      @media print {
-        .no-print { display: none !important; }
-        body { color: #111 !important; }
-        a { text-decoration: none; color: #000; }
-        .card { box-shadow: none !important; border: 1px solid #ddd !important; }
-        .container { max-width: 900px !important; }
-        .page-break { page-break-before: always; }
-        /* Disable snap for print */
-        .snap-y, .snap-mandatory, .min-h-screen, .h-dvh { height: auto !important; overflow: visible !important; }
-        section { padding: 2rem 0 !important; }
-      }
-
+      html, body { height: 100%; }
+      html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       @media (prefers-reduced-motion: reduce) {
-      .animate-floaty { animation: none !important; }
-      html { scroll-behavior: auto !important; }
+        html { scroll-behavior: auto; }
+        .animate-floaty { animation: none !important; }
       }
-      
-      html {
-        scroll-behavior: smooth;
+      /* הדגשת פוקוס נגישה לקישורי דילוג */
+      .skip-link:focus {
+        position: fixed; top: .75rem; left: .75rem; z-index: 60;
+        background: #0f172a; color: #fff; padding: .5rem .75rem; border-radius: .5rem;
       }
-      #snapRoot {
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: y mandatory;
-        scroll-padding-top: 4rem; /* להתאמת גובה ההדר */
-      }
-      section {
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-      }
-      
     </style>
 
     <!-- Favicon -->
@@ -84,105 +52,108 @@
   </head>
 
   <body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-brand-200 selection:text-slate-900">
-    <script>
-      // Persisted theme: immediately set to avoid FOUC
-      const storedTheme = localStorage.getItem('theme');
-      if (storedTheme === 'dark') document.documentElement.classList.add('dark');
-    </script>
+    <a href="#hero" class="skip-link sr-only">Skip to content</a>
+
+    <!-- Persist theme: no FOUC -->
+    <script>if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');</script>
 
     <!-- Header -->
-    <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60 no-print">
+    <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between py-1.5">
+        <div class="flex items-center justify-between py-2">
           <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white grid place-content-center font-semibold shadow-soft">LY</div>
+            <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white grid place-content-center text-sm font-semibold shadow">LY</div>
             <div>
-              <h1 class="text-lg sm:text-xl font-semibold leading-tight">Liav Yanko</h1>
-              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Interactive Resume</p>
+              <h1 class="text-base sm:text-lg font-semibold leading-tight">Liav Yanko</h1>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Interactive Resume</p>
             </div>
           </div>
           <div class="flex items-center gap-2">
-            <button id="themeToggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-1 text-sm hover:bg-slate-50 dark:hover:bg-slate-900 transition">
+            <a href="assets/LiavYankoCV.png" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-900 transition" title="View/Download CV (PDF)">
+              <i data-lucide="file-text" class="h-4 w-4"></i><span class="hidden sm:inline">View CV</span>
+            </a>
+            <button id="themeToggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-900 transition" title="Toggle theme">
               <i data-lucide="moon" class="h-4 w-4 dark:hidden"></i>
               <i data-lucide="sun" class="h-4 w-4 hidden dark:inline"></i>
               <span class="hidden sm:inline">Theme</span>
-            </button>
-            <button id="downloadBtn" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-3 py-1 text-sm shadow-soft transition" title="Download PDF">
-              <i data-lucide="download" class="h-4 w-4"></i>
-              <span class="hidden sm:inline">Download PDF</span>
             </button>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Snap Container: full-screen sections -->
-    <main id="snapRoot" class="scroll-pt-14">
-      <!-- SECTION 1: HERO (name + title + memoji) -->
-      <section id="hero" class="relative min-h-screen snap-start [scroll-snap-stop:always] flex items-start">
+    <main id="content">
+      <!-- HERO -->
+      <section id="hero" class="relative">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 to-transparent dark:from-slate-900"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
-          <div class="max-w-3xl mx-auto text-center space-y-4 sm:space-y-5">
-            <h2 id="heroTitle" class="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-300">
-              Liav Yanko
-            </h2>
-            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300">Project Manager (IAF &amp; Intelligence Corps) — Agile, cross‑functional leadership, product development, Geo‑data analytics, UI/UX.</p>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-14">
+          <div class="grid lg:grid-cols-2 gap-8 items-center">
+            <div class="text-center lg:text-left space-y-5">
+              <p class="text-sm uppercase tracking-widest text-brand-700 dark:text-brand-300">Hi, I'm</p>
+              <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-300">Liav Yanko</h2>
+              <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300">
+                Project Manager with proven success in the Israeli Air Force and Intelligence Corps — agile leadership, cross‑functional collaboration, product development, geo‑data analytics, and UI/UX.
+              </p>
 
-          <!-- Real Memoji image (circular, 3D look) -->
-          <div id="memojiWrap" class="mx-auto w-48 h-48 sm:w-56 sm:h-56 animate-floaty">
-            <div class="relative w-full h-full rounded-full p-2 bg-gradient-to-br from-brand-200/70 to-brand-500/40 shadow-soft">
-              <!-- inner '3D' puck -->
-              <div class="relative w-full h-full rounded-full bg-white/95 dark:bg-slate-900/95 ring-1 ring-slate-300/50 dark:ring-slate-700/50 overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.08),inset_0_10px_20px_rgba(255,255,255,0.55)]">
-                <!-- glossy highlight -->
-                <div class="pointer-events-none absolute -top-1 left-1 right-1 h-1/3 rounded-full bg-gradient-to-b from-white/50 to-transparent"></div>
-                <img src="assets/memoji.webp"
-                     alt="Liav Yanko Memoji"
-                     width="512" height="512"
-                     class="absolute inset-0 w-full h-full object-contain p-3"
-                     fetchpriority="high"
-                     loading="eager" />
+              <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                <a href="assets/LiavYankoCV.png" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition">
+                  <i data-lucide="file-text" class="h-4 w-4"></i><span>See my CV</span>
+                </a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 shadow transition">
+                  <i data-lucide="send" class="h-4 w-4"></i><span>Get in touch</span>
+                </a>
               </div>
             </div>
-          </div>
 
-            <!-- Quick contacts -->
-            <div class="flex flex-wrap justify-center gap-3">
-              <a href="mailto:liavyanko@gmail.com" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition" aria-label="Send Email">
-                <i data-lucide="mail" class="h-4 w-4"></i><span>Email</span>
-              </a>
-              <a href="assets/LiavYankoCV.png" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition" aria-label="View CV (PDF)">
-                <i data-lucide="file-text" class="h-4 w-4"></i><span>View CV</span>
-              </a>
-              <a href="https://wa.me/972509361133?text=Hi%20Liav%2C%20I%27m%20interested%20in%20your%20profile" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition" aria-label="WhatsApp">
-                <i data-lucide="message-circle" class="h-4 w-4"></i><span>WhatsApp</span>
-              </a>
-              <a href="https://www.linkedin.com/in/liav-yanko-b22778244/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition" aria-label="LinkedIn">
-                <i data-lucide="linkedin" class="h-4 w-4"></i><span>LinkedIn</span>
-              </a>
-            </div>
-
-            <!-- Scroll hint -->
-            <div class="mt-3 text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2 text-sm">
-              <span>Scroll</span>
-              <i data-lucide="chevrons-down" class="h-4 w-4 animate-floaty"></i>
+            <!-- Memoji -->
+            <div class="mx-auto w-48 h-48 sm:w-56 sm:h-56 animate-floaty">
+              <div class="relative w-full h-full rounded-full p-2 bg-gradient-to-br from-brand-200/70 to-brand-500/40 shadow">
+                <div class="relative w-full h-full rounded-full bg-white/95 dark:bg-slate-900/95 ring-1 ring-slate-300/50 dark:ring-slate-700/50 overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.08),inset_0_10px_20px_rgba(255,255,255,0.55)]">
+                  <div class="pointer-events-none absolute -top-1 left-1 right-1 h-1/3 rounded-full bg-gradient-to-b from-white/50 to-transparent"></div>
+                  <img src="assets/memoji.webp" alt="Liav Yanko Memoji" width="512" height="512" class="absolute inset-0 w-full h-full object-contain p-3" loading="eager" fetchpriority="high" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 2: EXPERIENCE (moved above skills) -->
-      <section id="experience" class="relative min-h-screen snap-start">
+      <!-- ABOUT -->
+      <section id="about" class="relative">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-50 to-transparent dark:via-slate-900/70"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+          <div class="grid md:grid-cols-5 gap-8 items-center max-w-5xl mx-auto">
+            <div class="md:col-span-2 order-2 md:order-1">
+              <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-6 shadow">
+                <h3 class="text-2xl font-semibold mb-3">About Me</h3>
+                <div class="space-y-3 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                  <p>Experienced Project Manager adept at navigating high-stakes environments within the Israeli Air Force and Intelligence Corps, collaborating seamlessly with leading defense industries.</p>
+                  <p>➡️ Proficient in agile project management methodologies, adeptly steering cross-functional teams towards successful project delivery. Skilled in team leadership, product development, and business process improvement, driving operational excellence and continuous innovation.</p>
+                  <p>➡️ Specialized in Geo-Information Systems, offering valuable insights into UI/UX enhancements, algorithmic advancements, and feature integration for hardware and software projects. Expertise spans the intersection of technology, data analytics, and operational effectiveness.</p>
+                  <p>➡️ Passionate about the convergence of Finance, Economics, and Technology, with a relentless pursuit of knowledge and growth. Committed to driving customer success, leveraging contract negotiation skills to foster strong client relationships and deliver exceptional results.</p>
+                </div>
+              </div>
+            </div>
+            <div class="md:col-span-3 order-1 md:order-2">
+              <img src="assets/memoji.webp" alt="Liav portrait memoji" class="w-full max-w-md mx-auto rounded-2xl shadow" width="800" height="800" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="relative">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-50 to-transparent dark:via-slate-900/70"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div class="mb-8 text-center">
-            <h3 class="text-3xl font-semibold">Experience</h3>
+            <h3 class="text-3xl font-semibold">Professional Experience</h3>
             <p class="text-slate-600 dark:text-slate-300 mt-2">Clean, expandable timeline.</p>
           </div>
 
           <ol class="relative border-s border-slate-200 dark:border-slate-800 ml-4 max-w-3xl mx-auto">
-            <li class="group relative pl-8 pb-10 reveal">
+            <li class="group relative pl-8 pb-10">
               <span class="absolute -left-3 top-1.5 h-6 w-6 rounded-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 grid place-content-center"><i data-lucide="briefcase" class="h-3.5 w-3.5"></i></span>
-              <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow-soft transition">
+              <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow transition">
                 <div class="flex flex-wrap items-baseline justify-between gap-3">
                   <h4 class="text-lg font-semibold">Israeli Military Intelligence — Project Manager (Officer + Reserved)</h4>
                   <span class="text-sm text-slate-500">Oct 2023 – Jan 2025</span>
@@ -199,9 +170,9 @@
               </div>
             </li>
 
-            <li class="group relative pl-8 pb-10 reveal">
+            <li class="group relative pl-8 pb-10">
               <span class="absolute -left-3 top-1.5 h-6 w-6 rounded-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 grid place-content-center"><i data-lucide="plane" class="h-3.5 w-3.5"></i></span>
-              <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow-soft transition">
+              <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow transition">
                 <div class="flex flex-wrap items-baseline justify-between gap-3">
                   <h4 class="text-lg font-semibold">Israeli Air Force — Airborne Intelligence Operator</h4>
                   <span class="text-sm text-slate-500">Sept 2022 – Oct 2023</span>
@@ -218,9 +189,9 @@
               </div>
             </li>
 
-            <li class="group relative pl-8 pb-10 reveal">
+            <li class="group relative pl-8 pb-10">
               <span class="absolute -left-3 top-1.5 h-6 w-6 rounded-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 grid place-content-center"><i data-lucide="radar" class="h-3.5 w-3.5"></i></span>
-              <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow-soft transition">
+              <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow transition">
                 <div class="flex flex-wrap items-baseline justify-between gap-3">
                   <h4 class="text-lg font-semibold">Israeli Military Intelligence — Project Manager (Officer)</h4>
                   <span class="text-sm text-slate-500">Apr 2021 – Sept 2022</span>
@@ -237,9 +208,9 @@
               </div>
             </li>
 
-            <li class="group relative pl-8 pb-2 reveal">
+            <li class="group relative pl-8 pb-2">
               <span class="absolute -left-3 top-1.5 h-6 w-6 rounded-full bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-700 grid place-content-center"><i data-lucide="handshake" class="h-3.5 w-3.5"></i></span>
-              <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow-soft transition">
+              <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:shadow transition">
                 <div class="flex flex-wrap items-baseline justify-between gap-3">
                   <h4 class="text-lg font-semibold">Israeli Military Intelligence — Customer Success Consultant</h4>
                   <span class="text-sm text-slate-500">Jan 2020 – Dec 2020</span>
@@ -258,24 +229,24 @@
         </div>
       </section>
 
-      <!-- SECTION 3: SKILLS -->
-      <section id="skills" class="relative snap-start">
+      <!-- SKILLS -->
+      <section id="skills" class="relative">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/60 to-transparent dark:from-slate-900"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div class="mb-8 text-center">
             <h3 class="text-3xl font-semibold">Skills</h3>
             <p class="text-slate-600 dark:text-slate-300 mt-2">Toolset &amp; domains.</p>
           </div>
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
+            <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
               <h4 class="font-medium mb-3 flex items-center gap-2"><i data-lucide="kanban" class="h-4 w-4"></i> Project Management</h4>
               <div class="flex flex-wrap gap-2 text-sm">
-                <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-800 dark:bg-slate-800 dark:text-brand-200">Agile methodologies</span>
+                <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-800 dark:bg-slate-800 dark:text-brand-200">Agile</span>
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">R&amp;D Oversight</span>
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Roadmap Execution</span>
               </div>
             </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
+            <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
               <h4 class="font-medium mb-3 flex items-center gap-2"><i data-lucide="code-2" class="h-4 w-4"></i> Programming</h4>
               <div class="flex flex-wrap gap-2 text-sm">
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Python</span>
@@ -284,18 +255,15 @@
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">JavaScript</span>
               </div>
             </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
+            <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
               <h4 class="font-medium mb-3 flex items-center gap-2"><i data-lucide="wrench" class="h-4 w-4"></i> Tools</h4>
               <div class="flex flex-wrap gap-2 text-sm">
-                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Jira</span>
-                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Scrum</span>
-                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Office</span>
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Git</span>
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">GitHub</span>
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">VSCode</span>
               </div>
             </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
+            <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
               <h4 class="font-medium mb-3 flex items-center gap-2"><i data-lucide="users" class="h-4 w-4"></i> Leadership</h4>
               <div class="flex flex-wrap gap-2 text-sm">
                 <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Team Coordination</span>
@@ -307,125 +275,73 @@
         </div>
       </section>
 
-      <!-- SECTION 4: CERTIFICATIONS -->
-      <section id="certifications" class="relative snap-start">
+      <!-- PROJECTS (כולל כתבות) -->
+      <section id="projects" class="relative">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-50 to-transparent dark:via-slate-900/70"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div class="mb-8 text-center">
-            <h3 class="text-3xl font-semibold">Certifications &amp; Courses</h3>
+            <h3 class="text-3xl font-semibold">Projects &amp; Press</h3>
+            <p class="text-slate-600 dark:text-slate-300 mt-2">Selected work and coverage.</p>
           </div>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 flex items-start gap-3">
-              <i data-lucide="badge-check" class="h-5 w-5 mt-1"></i>
-              <p class="font-medium">Israeli Military Intelligence — Project Management</p>
-            </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 flex items-start gap-3">
-              <i data-lucide="badge-check" class="h-5 w-5 mt-1"></i>
-              <p class="font-medium">HarvardX — CS50’s Introduction to Programming with Python</p>
-            </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 flex items-start gap-3">
-              <i data-lucide="badge-check" class="h-5 w-5 mt-1"></i>
-              <p class="font-medium">Israeli Military Intelligence — Intelligence Officer Training</p>
-            </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 flex items-start gap-3">
-              <i data-lucide="badge-check" class="h-5 w-5 mt-1"></i>
-              <p class="font-medium">Israeli Military Intelligence — GEOINT Remote Sensing &amp; Imagery Analysis</p>
-            </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 flex items-start gap-3">
-              <i data-lucide="badge-check" class="h-5 w-5 mt-1"></i>
-              <p class="font-medium">ELTA Systems Ltd — Airborne Systems Operator</p>
-            </div>
-            <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 flex items-start gap-3">
-              <i data-lucide="badge-check" class="h-5 w-5 mt-1"></i>
-              <p class="font-medium">Center for Applied Educational Technologies — Astronautics Master Class</p>
-            </div>
+
+          <div class="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+            <!-- Projects -->
+            <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
+              <h4 class="font-medium mb-2 flex items-center gap-2"><i data-lucide="rocket" class="h-4 w-4"></i> Projects</h4>
+              <ul class="list-disc pl-5 space-y-1 text-sm">
+                <li>Multi‑mission intelligence aircraft program — PM of 5 agile teams, multi‑sensor integration, real‑time intel.</li>
+                <li>Electro‑optical sensor initiative — end‑to‑end leadership, R&amp;D → deployment.</li>
+                <li>Geo‑information analysis platform — CS→Product bridge, UI/UX advisory, KPI‑driven delivery.</li>
+              </ul>
+            </article>
+
+            <!-- Press -->
+            <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
+              <h4 class="font-medium mb-2 flex items-center gap-2"><i data-lucide="newspaper" class="h-4 w-4"></i> Articles</h4>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a class="inline-flex items-start gap-2 hover:underline" target="_blank" rel="noopener" href="https://www.ynet.co.il/news/article/yokra13855707">
+                    <i data-lucide="external-link" class="h-4 w-4 mt-0.5"></i>
+                    <span>ממעקב חשאי ברפיח עד לזיהוי שיגור מתימן: מטוס הביון החדש של חיל האוויר</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="inline-flex items-start gap-2 hover:underline" target="_blank" rel="noopener" href="https://www.ynet.co.il/news/article/b1anmvjun">
+                    <i data-lucide="external-link" class="h-4 w-4 mt-0.5"></i>
+                    <span>עסקה של מיליארד דולר: נחשף אורון, מטוס הביון החדש של ישראל</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="inline-flex items-start gap-2 hover:underline" target="_blank" rel="noopener" href="https://www.ynet.co.il/news/article/sjyxx9bgeg">
+                    <i data-lucide="external-link" class="h-4 w-4 mt-0.5"></i>
+                    <span>השר כ"ץ הכריז על ששת הפרויקטים הזוכים בפרס ביטחון ישראל לשנת 2025</span>
+                  </a>
+                </li>
+              </ul>
+            </article>
+
+            <!-- More -->
+            <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
+              <h4 class="font-medium mb-2 flex items-center gap-2"><i data-lucide="layers" class="h-4 w-4"></i> More</h4>
+              <ul class="list-disc pl-5 space-y-1 text-sm">
+                <li>Awards / Recognition (public)</li>
+                <li>Talks / Panels</li>
+                <li>Open‑source / Writing</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
-      
-          <!-- SECTION 5 : PROJECTS / PRESS / MORE -->
-          <section id="portfolio" class="relative snap-start [scroll-snap-stop:always]">
-            <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50/60 to-transparent dark:from-slate-900/70"></div>
-          
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-              <div class="mb-6 text-center">
-                <h3 class="text-3xl font-semibold">Projects &amp; Real‑world Impact</h3>
-                <p class="text-slate-600 dark:text-slate-300 mt-2">Selected work, press coverage, and additional highlights.</p>
-              </div>
-          
-              <div class="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-                <!-- Press -->
-                <article class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
-                  <div class="flex items-start justify-between">
-                    <h4 class="font-medium flex items-center gap-2"><i data-lucide="newspaper" class="h-4 w-4"></i> Articles</h4>
-                    <button class="toggle-details inline-flex items-center gap-1 text-sm text-brand-700 dark:text-brand-300 hover:underline" aria-expanded="false" aria-controls="press-list">
-                      <i data-lucide="chevron-down" class="h-4 w-4"></i> Open
-                    </button>
-                  </div>
-                  <ul id="press-list" class="accordion-panel mt-3 hidden space-y-2 text-sm">
-                    <li>
-                      <a class="inline-flex items-start gap-2 hover:underline" target="_blank" rel="noopener" href="https://www.ynet.co.il/news/article/yokra13855707">
-                        <i data-lucide="external-link" class="h-4 w-4 mt-0.5"></i>
-                        <span>ממעקב חשאי ברפיח עד לזיהוי שיגור מתימן: מטוס הביון החדש של חיל האוויר</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="inline-flex items-start gap-2 hover:underline" target="_blank" rel="noopener" href="https://www.ynet.co.il/news/article/b1anmvjun">
-                        <i data-lucide="external-link" class="h-4 w-4 mt-0.5"></i>
-                        <span>עסקה של מיליארד דולר: נחשף אורון, מטוס הביון החדש של ישראל</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="inline-flex items-start gap-2 hover:underline" target="_blank" rel="noopener" href="https://www.ynet.co.il/news/article/sjyxx9bgeg">
-                        <i data-lucide="external-link" class="h-4 w-4 mt-0.5"></i>
-                        <span>השר כ"ץ הכריז על ששת הפרויקטים הזוכים בפרס ביטחון ישראל לשנת 2025</span>
-                      </a>
-                    </li>
-                  </ul>
-                </article>
-          
-                <!-- Projects -->
-                <article class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
-                  <div class="flex items-start justify-between">
-                    <h4 class="font-medium flex items-center gap-2"><i data-lucide="rocket" class="h-4 w-4"></i> Projects</h4>
-                    <button class="toggle-details inline-flex items-center gap-1 text-sm text-brand-700 dark:text-brand-300 hover:underline" aria-expanded="false" aria-controls="projects-list">
-                      <i data-lucide="chevron-down" class="h-4 w-4"></i> Open
-                    </button>
-                  </div>
-                  <ul id="projects-list" class="accordion-panel mt-3 hidden list-disc pl-5 space-y-1 text-sm">
-                    <li>Multi‑mission intelligence aircraft program — PM of 5 agile teams, multi‑sensor integration, real‑time intel.</li>
-                    <li>Electro‑optical sensor initiative — end‑to‑end leadership, R&amp;D → deployment.</li>
-                    <li>Geo‑information analysis platform — CS→Product bridge, UI/UX advisory, KPI‑driven delivery.</li>
-                  </ul>
-                </article>
-          
-                <!-- More -->
-                <article class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
-                  <div class="flex items-start justify-between">
-                    <h4 class="font-medium flex items-center gap-2"><i data-lucide="layers" class="h-4 w-4"></i> More</h4>
-                    <button class="toggle-details inline-flex items-center gap-1 text-sm text-brand-700 dark:text-brand-300 hover:underline" aria-expanded="false" aria-controls="extra-list">
-                      <i data-lucide="chevron-down" class="h-4 w-4"></i> Open
-                    </button>
-                  </div>
-                  <ul id="extra-list" class="accordion-panel mt-3 hidden list-disc pl-5 space-y-1 text-sm">
-                    <li>Awards / Recognition (public)</li>
-                    <li>Talks / Panels</li>
-                    <li>Open‑source / Writing</li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </section>
 
-      <!-- SECTION 6: CONTACT CTA -->
-      <section id="contact" class="relative min-h-screen snap-start [scroll-snap-stop:always] grid place-items-center">
+      <!-- CONTACT -->
+      <section id="contact" class="relative">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 to-transparent dark:from-slate-900"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-8 md:p-10 shadow-soft max-w-4xl mx-auto text-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-8 md:p-10 shadow max-w-4xl mx-auto text-center">
             <h3 class="text-3xl font-semibold">Let’s build something valuable.</h3>
             <p class="text-slate-600 dark:text-slate-300 mt-2">Open to PM roles (Product/Project) — geo‑analytics, defense tech, data products, and human‑centric systems.</p>
             <div class="mt-6 flex flex-wrap justify-center gap-3">
-              <a href="mailto:liavyanko@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 shadow-soft transition"><i data-lucide="send" class="h-4 w-4"></i>Email Me</a>
+              <a href="mailto:liavyanko@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 shadow transition"><i data-lucide="send" class="h-4 w-4"></i>Email Me</a>
               <a href="https://wa.me/972509361133?text=Hi%20Liav%2C%20let%27s%20connect" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition"><i data-lucide="message-circle" class="h-4 w-4"></i>WhatsApp</a>
               <a href="https://www.linkedin.com/in/liav-yanko" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-900 transition"><i data-lucide="linkedin" class="h-4 w-4"></i>LinkedIn</a>
             </div>
@@ -453,53 +369,8 @@
       }
     </script>
 
-    <!-- Interactivity: theme, details toggle, reveal on scroll, PDF export -->
+    <!-- Interactivity -->
     <script>
-      
-      // Smooth scrolling (Lenis)
-      window.addEventListener('load', () => {
-        const lenis = new Lenis({ duration: 1.15, smoothWheel: true, smoothTouch: false });
-        function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-      });
-
-      // Hero kinetic title (subtle scale & fade on scroll)
-      const heroTitle = document.getElementById('heroTitle');
-      const snapRoot = document.getElementById('snapRoot');
-      if (heroTitle && snapRoot) {
-        snapRoot.addEventListener('scroll', () => {
-          const y = snapRoot.scrollTop;
-          const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
-          const p = clamp(y / 180, 0, 1);
-          heroTitle.style.transform = `scale(${1 - p*0.04}) translateY(${p*4}px)`;
-          heroTitle.style.opacity = String(1 - p*0.18);
-        }, { passive: true });
-      }
-
-      // Memoji tilt (pointer parallax)
-      const memoji = document.getElementById('memojiWrap');
-      if (memoji) {
-        const inner = memoji.querySelector('.rounded-full.bg-white\\/95, .dark\\:bg-slate-900\\/95') || memoji.firstElementChild;
-        let rect;
-        const updateRect = () => rect = memoji.getBoundingClientRect();
-      
-        const onMove = (e) => {
-          if (!rect) updateRect();
-          const x = (e.clientX ?? (e.touches?.[0]?.clientX)) - rect.left;
-          const y = (e.clientY ?? (e.touches?.[0]?.clientY)) - rect.top;
-          const rx = ((y / rect.height) - 0.5) * -6; // tilt X
-          const ry = ((x / rect.width)  - 0.5) *  6; // tilt Y
-          memoji.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-        };
-        const reset = () => { memoji.style.transform = 'rotateX(0) rotateY(0)'; };
-      
-        window.addEventListener('resize', updateRect);
-        memoji.addEventListener('mousemove', onMove, { passive: true });
-        memoji.addEventListener('mouseleave', reset);
-        memoji.addEventListener('touchmove', onMove, { passive: true });
-        memoji.addEventListener('touchend', reset);
-      }
-      
       // Icons
       window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
 
@@ -515,45 +386,19 @@
         if (window.lucide) lucide.createIcons();
       });
 
-        // Details toggles (experience + portfolio accordions)
-        document.querySelectorAll('.toggle-details').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const id = btn.getAttribute('aria-controls');
-            const panel = document.getElementById(id);
-            if (!panel) return;
-        
-            // סגור פאנלים אחרים רק בתוך אותו סקשן
-            const scope = btn.closest('section') || document;
-            scope.querySelectorAll('.accordion-panel').forEach(p => {
-              if (p !== panel) p.classList.add('hidden');
-            });
-        
-            const expanded = btn.getAttribute('aria-expanded') === 'true';
-            btn.setAttribute('aria-expanded', String(!expanded));
-            panel.classList.toggle('hidden');
-        
-            const icon = btn.querySelector('[data-lucide]');
-            if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
-          });
+      // Toggle “Details” (experience list)
+      document.querySelectorAll('.toggle-details').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('aria-controls');
+          const panel = document.getElementById(id);
+          if (!panel) return;
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          panel.classList.toggle('hidden');
+          const icon = btn.querySelector('[data-lucide]');
+          if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
         });
-
-      // Reveal on scroll (within sections)
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('opacity-100', 'translate-y-0');
-            observer.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      document.querySelectorAll('.reveal').forEach(el => {
-        el.classList.add('opacity-0', 'translate-y-3', 'transition', 'duration-700');
-        observer.observe(el);
       });
-
-      // Download as PDF via print()
-      document.getElementById('downloadBtn')?.addEventListener('click', () => { window.print(); });
     </script>
   </body>
 </html>
