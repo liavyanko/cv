@@ -4,6 +4,20 @@
 
 /* אפשר להשאיר את ה-print styles שלך בתוך ה-HTML כמו היום */
 
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50; /* לוודא שהתפריט מעל כל התוכן */
+  background-color: rgba(14, 21, 37, 0.9); /* רקע שקוף-כהה */
+  backdrop-filter: blur(8px); /* אפקט זכוכית מט */
+}
+
+body {
+  padding-top: 70px; /* למנוע שהתוכן "יטפס" מתחת לתפריט */
+}
+
 /* צמצום שטח מת בין ה-hero לבין ה-about */
 .hero {
   padding-bottom: 0 !important;
