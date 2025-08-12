@@ -21,42 +21,22 @@
     <style>
       #snapRoot{ -webkit-overflow-scrolling:touch; scroll-behavior:smooth }
     </style>
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: { sans: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif"] },
-            colors: {
-              brand: {
-                50: '#eef7ff', 100: '#d9ecff', 200: '#b4d9ff', 300: '#86c1ff', 400: '#56a3ff', 500: '#2f86ff', 600: '#1f6df5', 700: '#1956cc', 800: '#1749a6', 900: '#183f87',
-              }
-            },
-            boxShadow: { soft: '0 10px 30px rgba(0,0,0,0.08)' },
-            keyframes: {
-              floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(6px)' } },
-            },
-            animation: { floaty: 'floaty 2.5s ease-in-out infinite' }
-          }
-        }
-      }
-    </script>
 
+<link rel="stylesheet" href="assets/tailwind.css">
+
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icons (Lucide) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <!-- OpenGraph / Twitter -->
     <meta property="og:title" content="Liav Yanko — Interactive Resume" />
     <meta property="og:description" content="Project Manager (IAF + Intelligence Corps). Agile leadership, product development, geo‑data analytics, UI/UX." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/assets/og-image." />
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Print styles for clean PDF export -->
