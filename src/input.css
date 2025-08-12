@@ -3,3 +3,93 @@
 @tailwind utilities;
 
 /* אפשר להשאיר את ה-print styles שלך בתוך ה-HTML כמו היום */
+
+/* Contact Section Layout */
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 10%;
+  background: linear-gradient(180deg, #0e1525, #0b1120);
+  position: relative;
+}
+
+.contact-content {
+  max-width: 55%;
+}
+
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.contact-section p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn.email {
+  background-color: #007aff;
+  color: white;
+}
+
+.btn.linkedin {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+/* Tiger & Animation */
+.tiger-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tiger-img {
+  width: 240px;
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: -25px;
+  right: -10px;
+  background: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Effect */
+.tiger-wrapper:hover .tiger-img {
+  transform: rotate(3deg) scale(1.05);
+}
+
+.tiger-wrapper:hover .speech-bubble {
+  opacity: 1;
+  transform: translateY(0);
+}
