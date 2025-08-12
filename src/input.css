@@ -4,50 +4,60 @@
 
 /* אפשר להשאיר את ה-print styles שלך בתוך ה-HTML כמו היום */
 
-/* ===== Contact Section (desktop first) ===== */
-
+/* ===== Contact section layout (Grid) ===== */
 .contact-section{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:32px; padding:80px 6vw; position:relative; overflow:hidden;
+  display:grid;
+  grid-template-columns: 1fr auto;     /* תוכן + הנמר */
+  align-items:center;
+  gap:32px;
+  padding:80px 6vw;
+  position:relative;
+  overflow:hidden;
 }
+
+/* טקסט */
 .contact-content{ max-width:56ch }
-.contact-section h2{ font-size:2.75rem; line-height:1.1; margin:0 0 12px }
-.contact-section p{ font-size:1.125rem; color:#cbd5e1; margin:0 0 22px }
-.contact-buttons{ display:flex; gap:12px; flex-wrap:wrap }
+.contact-section h2{ font-size: clamp(2rem, 3.2vw, 2.75rem); line-height:1.1; margin:0 0 12px }
+.contact-section p{ font-size: clamp(1rem, 1.2vw, 1.125rem); color:#cbd5e1; margin:0 0 22px }
 
-.tiger-wrapper{ flex:0 0 auto; position:relative; display:flex; align-items:center; justify-content:center }
-.tiger-img{ width: clamp(220px, 28vw, 320px); height:auto; transition:transform .2s ease }
+/* הנמר + בועה */
+.tiger-wrapper{
+  position:relative;
+  justify-self:end;                /* להצמיד לימין העמודה */
+  display:flex; align-items:center; justify-content:center;
+}
+.tiger-img{
+  width: clamp(180px, 26vw, 320px);
+  height:auto;
+  transition: transform .2s ease;
+}
 .speech-bubble{
-  position:absolute; top:-18px; right:0;
-  background:#fff; color:#000; padding:6px 10px; border-radius:10px;
-  font-size:.9rem; opacity:0; transform:translateY(-6px);
+  position:absolute; top:-14px; right:0;
+  background:#fff; color:#000; padding:6px 10px;
+  border-radius:10px; font-size:.9rem;
+  opacity:0; transform:translateY(-6px);
   transition:opacity .3s ease, transform .3s ease;
-  box-shadow:0 6px 18px rgba(0,0,0,.15)
+  box-shadow:0 6px 18px rgba(0,0,0,.15);
 }
-.tiger-wrapper:hover .tiger-img{ transform:rotate(3deg) scale(1.05) }
-.tiger-wrapper:hover .speech-bubble{ opacity:1; transform:translateY(0) }
+.tiger-wrapper:hover .tiger-img{ transform: rotate(3deg) scale(1.05) }
+.tiger-wrapper:hover .speech-bubble{ opacity:1; transform: translateY(0) }
 
-/* ===== Mobile & small tablets ===== */
+/* ===== מובייל: עדיין שתי עמודות, אבל הנמר קטן יותר ===== */
 @media (max-width: 768px){
-  .contact-section{
-    flex-direction:column; align-items:flex-start;
-    padding:48px 6vw 56px;
-  }
-  .contact-content{ max-width:unset }
-  .contact-section h2{ font-size:2.1rem }
-  .contact-section p{ font-size:1rem; margin-bottom:18px }
-  .contact-buttons{ gap:10px }
-  .tiger-wrapper{
-    align-self:center; order:2; /* הנמר ירד מתחת לטקסט והכפתורים */
-    margin-top:14px;
-  }
-  .tiger-img{ width: clamp(170px, 42vw, 240px) }
-  /* במובייל אין hover – נראה את הבועה עדינה כברירת מחדל */
-  .speech-bubble{ opacity:.95; transform:none; right:8px; top:-10px }
+  .contact-section{ padding:48px 6vw; gap:20px }
+  .tiger-img{ width: clamp(150px, 34vw, 220px) }
+  /* במובייל אין hover – נראה את הבועה במצב מוצג */
+  .speech-bubble{ opacity:.95; transform:none; right:6px; top:-8px }
 }
 
-/* מאוד קטן (מכשירי 360px) */
-@media (max-width: 380px){
-  .contact-section h2{ font-size:1.8rem }
-  .tiger-img{ width: 56vw }
+/* מסך ממש צר: עוברים לעמודה אחת והנמר יורד מתחת לטקסט */
+@media (max-width: 420px){
+  .contact-section{
+    grid-template-columns: 1fr;
+  }
+  .tiger-wrapper{
+    justify-self:center;
+    margin-top:10px;
+  }
+  .tiger-img{ width: clamp(160px, 52vw, 220px) }
 }
