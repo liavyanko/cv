@@ -56,6 +56,38 @@
 
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='24' fill='%232f86ff'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-weight='700' font-size='64' fill='white'%3ELY%3C/text%3E%3C/svg%3E" />
+      
+      <style>
+        /* אנימציית ריחוף עדין כברירת מחדל */
+        @keyframes liav-float {
+          0%,100% { transform: translateY(0) }
+          50% { transform: translateY(-4px) }
+        }
+        /* רטט/נענוע קצר כשהעכבר מעל המסקוט */
+        @keyframes liav-wiggle {
+          0%,100% { transform: rotate(0deg) }
+          25% { transform: rotate(-6deg) }
+          75% { transform: rotate(6deg) }
+        }
+        /* מחלקות עזר (בלי לגעת ב‑Tailwind) */
+        .liav-mascot { animation: liav-float 3.2s ease-in-out infinite; will-change: transform }
+        .liav-mascot-wrap:hover .liav-mascot { animation: liav-wiggle .45s ease-in-out 2, liav-float 3.2s ease-in-out infinite }
+        .liav-bubble {
+          position:absolute; top:-0.5rem; left:50%; transform:translate(-50%, -6px);
+          opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s ease;
+          background:rgba(255,255,255,.95); color:#0f172a; border-radius:.75rem; 
+          padding:.25rem .55rem; font-size:.8rem; box-shadow:0 6px 20px rgba(0,0,0,.08);
+          white-space:nowrap;
+        }
+        .dark .liav-bubble { background:rgba(2,6,23,.95); color:#fff }
+        .liav-mascot-wrap:hover .liav-bubble { opacity:1; transform:translate(-50%, -14px) }
+        /* נגישות: כיבוי אנימציות אם המשתמש ביקש להפחית תנועה */
+        @media (prefers-reduced-motion: reduce) {
+          .liav-mascot, .liav-mascot-wrap:hover .liav-mascot { animation:none !important }
+          .liav-bubble { transition:none !important }
+        }
+      </style>
+    
   </head>
 
   <body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-brand-200 selection:text-slate-900">
@@ -373,7 +405,23 @@
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 to-transparent dark:from-slate-900"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-8 md:p-10 shadow max-w-4xl mx-auto text-center">
-            <h3 class="text-3xl font-semibold">Let’s build something valuable.</h3>
+            <div class="relative mx-auto flex items-center justify-center gap-3 w-fit">
+              <h3 class="text-3xl md:text-4xl font-semibold">Get In Touch</h3>
+            
+              <!-- המסקוט: נמר בג'י שמחזיק טלפון -->
+              <div class="liav-mascot-wrap relative inline-block">
+                <!-- בועת דיבור -->
+                <span class="liav-bubble">Hello there!</span>
+                <!-- התמונה עצמה -->
+                <img
+                  src="assets/tiger-gi.png"  
+                  alt="Friendly tiger in a judo gi holding a phone"
+                  width="96" height="96"
+                  class="liav-mascot h-16 w-16 md:h-20 md:w-20 select-none"
+                  draggable="false"
+                />
+              </div>
+            </div>
             <p class="text-slate-600 dark:text-slate-300 mt-2">Open to PM roles (Product/Project) — geo‑analytics, defense tech, data products, and human‑centric systems.</p>
             <div class="mt-6 flex flex-wrap justify-center gap-3">
               <a href="mailto:liavyanko@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 shadow transition"><i data-lucide="send" class="h-4 w-4"></i>Email Me</a>
