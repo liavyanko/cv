@@ -522,35 +522,37 @@
         document.getElementById('downloadBtnMobile')?.addEventListener('click', () => window.print());
 
       
-          // Accordion יחיד ב־#projects עם Delegation ונטרול מאזינים גלובליים
-          (() => {
-            const root = document.getElementById('projects');
-            if (!root) return;
-          
-            root.addEventListener('click', (e) => {
-              const btn = e.target.closest('.toggle-details');
-              if (!btn || !root.contains(btn)) return;
-          
-              e.preventDefault();
-              e.stopPropagation();
-          
-              const targetId = btn.getAttribute('aria-controls');
-              const panel = document.getElementById(targetId);
-              if (!panel) return;
-          
-              const wasOpen = btn.getAttribute('aria-expanded') === 'true';
-          
-              // סוגר הכל בתוך #projects בלבד
-              root.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
-              root.querySelectorAll('.toggle-details[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
-          
-              // פותח רק אם היה סגור
-              if (!wasOpen) {
-                panel.classList.remove('hidden');
-                btn.setAttribute('aria-expanded', 'true');
-              }
-            }, { passive: false });
-          })();
+        // אקורדיון קשיח ל־#projects: רק אחד פתוח, וחוסמים מאזינים אחרים
+        (() => {
+          const root = document.getElementById('projects');
+          if (!root) return;
+        
+          // capture=true כדי לתפוס לפני מאזינים אחרים
+          root.addEventListener('click', (e) => {
+            const btn = e.target.closest('.toggle-details');
+            if (!btn || !root.contains(btn)) return;
+        
+            e.preventDefault();
+            e.stopImmediatePropagation(); // הכי חשוב: לא נותן למאזינים אחרים על אותו אלמנט לרוץ
+            e.stopPropagation();
+        
+            const id = btn.getAttribute('aria-controls');
+            const panel = document.getElementById(id);
+            if (!panel) return;
+        
+            const shouldOpen = btn.getAttribute('aria-expanded') !== 'true';
+        
+            // סוגרים הכול בתוך #projects בלבד
+            root.querySelectorAll('.accordion-panel:not(.hidden)').forEach(p => p.classList.add('hidden'));
+            root.querySelectorAll('.toggle-details[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded','false'));
+        
+            // פותחים רק את הנוכחי (אם היה סגור)
+            if (shouldOpen) {
+              panel.classList.remove('hidden');
+              btn.setAttribute('aria-expanded','true');
+            }
+          }, true);
+        })();
 
 
             // פתיחת/סגירת הבועה בטאפ במובייל (לא פוגע ב-hover של דסקטופ)
