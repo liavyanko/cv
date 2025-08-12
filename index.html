@@ -521,34 +521,41 @@
         // כפתור הורדת PDF גם במובייל
         document.getElementById('downloadBtnMobile')?.addEventListener('click', () => window.print());
 
-            // פתיחה/סגירה של פאנלים כך שרק אחד ייפתח בכל פעם
-            document.querySelectorAll('#projects .toggle-details').forEach(btn => {
-              btn.addEventListener('click', () => {
-                const id = btn.getAttribute('aria-controls');
-                const panel = document.getElementById(id);
+          // אקורדיון ממוקד ל־#projects עם פתוח יחיד
+          (() => {
+            const root = document.querySelector('#projects');
+            if (!root) return;
+          
+            // האזנה ממוקדת רק לכפתורים בתוך #projects
+            root.querySelectorAll('.toggle-details').forEach(btn => {
+              btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+          
+                const targetId = btn.getAttribute('aria-controls');
+                const panel = root.querySelector(`#${CSS.escape(targetId)}`);
                 if (!panel) return;
-            
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-            
-                // סגור את כל שאר הפאנלים ב-#projects
-                document.querySelectorAll('#projects .accordion-panel').forEach(p => {
-                  p.classList.add('hidden');
-                });
-                document.querySelectorAll('#projects .toggle-details').forEach(b => {
+          
+                const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+          
+                // סגור הכל בתוך #projects בלבד
+                root.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
+                root.querySelectorAll('.toggle-details').forEach(b => {
                   b.setAttribute('aria-expanded', 'false');
-                  const icon = b.querySelector('[data-lucide]');
-                  if (icon) icon.style.transform = 'rotate(0deg)';
+                  const ic = b.querySelector('[data-lucide]');
+                  if (ic) ic.style.transform = 'rotate(0deg)';
                 });
-            
-                // פתח את הפאנל הנבחר אם הוא לא היה פתוח קודם
-                if (!expanded) {
+          
+                // פתח רק את הנוכחי אם היה סגור
+                if (!isExpanded) {
                   panel.classList.remove('hidden');
                   btn.setAttribute('aria-expanded', 'true');
-                  const icon = btn.querySelector('[data-lucide]');
-                  if (icon) icon.style.transform = 'rotate(180deg)';
+                  const ic = btn.querySelector('[data-lucide]');
+                  if (ic) ic.style.transform = 'rotate(180deg)';
                 }
-              });
+              }, { passive: true });
             });
+          })();
 
 
             // פתיחת/סגירת הבועה בטאפ במובייל (לא פוגע ב-hover של דסקטופ)
