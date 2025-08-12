@@ -89,7 +89,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-14">
           <div class="grid lg:grid-cols-2 gap-8 items-center">
             <div class="text-center lg:text-left space-y-5">
-              <p class="text-sm uppercase tracking-widest text-brand-700 dark:text-brand-300">Hi, I'm</p>
+              <p class="text-base sm:text-lg uppercase tracking-widest text-brand-700 dark:text-brand-300">Hi, I'm</p>
               <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-600 dark:from-white dark:to-slate-300">Liav Yanko</h2>
               <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300">
                 Project Manager with proven success in the Israeli Air Force and Intelligence Corps — agile leadership, cross‑functional collaboration, product development, geo‑data analytics, and UI/UX.
@@ -122,8 +122,8 @@
       <section id="about" class="relative">
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-50 to-transparent dark:via-slate-900/70"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-          <div class="grid md:grid-cols-5 gap-8 items-center max-w-5xl mx-auto">
-            <div class="md:col-span-2 order-2 md:order-1">
+          <div class="max-w-3xl mx-auto">
+            <div>
               <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 p-6 shadow">
                 <h3 class="text-2xl font-semibold mb-3">About Me</h3>
                 <div class="space-y-3 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
@@ -133,9 +133,6 @@
                   <p>➡️ Passionate about the convergence of Finance, Economics, and Technology, with a relentless pursuit of knowledge and growth. Committed to driving customer success, leveraging contract negotiation skills to foster strong client relationships and deliver exceptional results.</p>
                 </div>
               </div>
-            </div>
-            <div class="md:col-span-3 order-1 md:order-2">
-              <img src="assets/memoji.webp" alt="Liav portrait memoji" class="w-full max-w-md mx-auto rounded-2xl shadow" width="800" height="800" loading="lazy">
             </div>
           </div>
         </div>
@@ -287,8 +284,13 @@
           <div class="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
             <!-- Projects -->
             <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
-              <h4 class="font-medium mb-2 flex items-center gap-2"><i data-lucide="rocket" class="h-4 w-4"></i> Projects</h4>
-              <ul class="list-disc pl-5 space-y-1 text-sm">
+              <div class="flex items-start justify-between">
+                  <h4 class="font-medium flex items-center gap-2"><i data-lucide="rocket" class="h-4 w-4"></i> Projects</h4>
+                  <button class="toggle-details inline-flex items-center gap-1 text-sm text-brand-700 dark:text-brand-300 hover:underline" aria-expanded="false" aria-controls="proj-list">
+                    <i data-lucide="chevron-down" class="h-4 w-4"></i> Open
+                  </button>
+                </div>
+                <ul id="proj-list" class="accordion-panel mt-3 hidden list-disc pl-5 space-y-1 text-sm">
                 <li>Multi‑mission intelligence aircraft program — PM of 5 agile teams, multi‑sensor integration, real‑time intel.</li>
                 <li>Electro‑optical sensor initiative — end‑to‑end leadership, R&amp;D → deployment.</li>
                 <li>Geo‑information analysis platform — CS→Product bridge, UI/UX advisory, KPI‑driven delivery.</li>
@@ -297,8 +299,13 @@
 
             <!-- Press -->
             <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
-              <h4 class="font-medium mb-2 flex items-center gap-2"><i data-lucide="newspaper" class="h-4 w-4"></i> Articles</h4>
-              <ul class="space-y-2 text-sm">
+                <div class="flex items-start justify-between">
+                  <h4 class="font-medium flex items-center gap-2"><i data-lucide="newspaper" class="h-4 w-4"></i> Articles</h4>
+                  <button class="toggle-details inline-flex items-center gap-1 text-sm text-brand-700 dark:text-brand-300 hover:underline" aria-expanded="false" aria-controls="press-list">
+                    <i data-lucide="chevron-down" class="h-4 w-4"></i> Open
+                  </button>
+                </div>
+                <ul id="press-list" class="accordion-panel mt-3 hidden space-y-2 text-sm">
                 <li>
                   <a class="inline-flex items-start gap-2 hover:underline" target="_blank" rel="noopener" href="https://www.ynet.co.il/news/article/yokra13855707">
                     <i data-lucide="external-link" class="h-4 w-4 mt-0.5"></i>
@@ -322,8 +329,13 @@
 
             <!-- More -->
             <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5">
-              <h4 class="font-medium mb-2 flex items-center gap-2"><i data-lucide="layers" class="h-4 w-4"></i> More</h4>
-              <ul class="list-disc pl-5 space-y-1 text-sm">
+                <div class="flex items-start justify-between">
+                  <h4 class="font-medium flex items-center gap-2"><i data-lucide="layers" class="h-4 w-4"></i> More</h4>
+                  <button class="toggle-details inline-flex items-center gap-1 text-sm text-brand-700 dark:text-brand-300 hover:underline" aria-expanded="false" aria-controls="more-list">
+                    <i data-lucide="chevron-down" class="h-4 w-4"></i> Open
+                  </button>
+                </div>
+                <ul id="more-list" class="accordion-panel mt-3 hidden list-disc pl-5 space-y-1 text-sm">
                 <li>Awards / Recognition (public)</li>
                 <li>Talks / Panels</li>
                 <li>Open‑source / Writing</li>
@@ -386,19 +398,28 @@
         if (window.lucide) lucide.createIcons();
       });
 
-      // Toggle “Details” (experience list)
-      document.querySelectorAll('.toggle-details').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('aria-controls');
-          const panel = document.getElementById(id);
-          if (!panel) return;
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', String(!expanded));
-          panel.classList.toggle('hidden');
-          const icon = btn.querySelector('[data-lucide]');
-          if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        // Accordions (Projects/Press/More + Experience)
+        document.querySelectorAll('.toggle-details').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('aria-controls');
+            const panel = document.getElementById(id);
+            if (!panel) return;
+        
+            // סגור פאנלים אחרים באותו סקשן בלבד
+            const scope = btn.closest('section') || document;
+            scope.querySelectorAll('.accordion-panel').forEach(p => {
+              if (p !== panel) p.classList.add('hidden');
+            });
+        
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!expanded));
+            panel.classList.toggle('hidden');
+        
+            // סיבוב האייקון
+            const icon = btn.querySelector('[data-lucide]');
+            if (icon) icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+          });
         });
-      });
     </script>
   </body>
 </html>
