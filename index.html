@@ -494,7 +494,7 @@
         
           <!-- צד ימין: המסקוט -->
           <div class="tiger-wrapper">
-            <img src="assets/tiger-gi.png" alt="Tiger Mascot" class="tiger-img" width="480" height="640">
+            <img src="assets/tiger-gi.png" alt="Tiger Mascot" class="tiger-img" width="480" height="640" loading="lazy">
             <span class="speech-bubble">Hello there!</span>
           </div>
         </section>
@@ -518,137 +518,8 @@
       }
     </script>
 
-    <!-- Interactivity -->
-    <script>
-      // Icons
-      window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
-
-      // Year
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      // Theme toggle & persistence
-      const themeBtn = document.getElementById('themeToggle');
-      themeBtn?.addEventListener('click', () => {
-        const root = document.documentElement;
-        const isDark = root.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        if (window.lucide) lucide.createIcons();
-      });
-
-      // Mobile menu toggle
-        const mobileBtn   = document.getElementById('mobileToggle');
-        const mobileMenu  = document.getElementById('mobileMenu');
-        mobileBtn?.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-          const icon = mobileBtn.querySelector('[data-lucide]');
-          if (icon) icon.setAttribute('data-lucide', mobileMenu.classList.contains('hidden') ? 'menu' : 'x');
-          if (window.lucide) lucide.createIcons();
-        });
-        
-        // סגירה אוטומטית במעבר קישור במובייל
-        document.querySelectorAll('#mobileMenu a[data-nav]').forEach(a => {
-          a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-        });
-        
-        // Active link highlight לפי הסקשן הנראה
-        const navLinks = document.querySelectorAll('a[data-nav]');
-        const sections = ['hero','about','projects','contact']
-          .map(id => document.getElementById(id))
-          .filter(Boolean);
-        
-        const navMap = {};
-        navLinks.forEach(a => {
-          const hash = a.getAttribute('href') || '';
-          const id = hash.replace('#','');
-          navMap[id] = navMap[id] || [];
-          navMap[id].push(a);
-        });
-        
-        const setActive = (id) => {
-          navLinks.forEach(a => a.classList.remove('bg-brand-50','dark:bg-slate-800','text-brand-700','dark:text-brand-300'));
-          (navMap[id] || []).forEach(a => a.classList.add('bg-brand-50','dark:bg-slate-800','text-brand-700','dark:text-brand-300'));
-        };
-        
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) setActive(e.target.id);
-          });
-        }, { root: null, rootMargin: '-30% 0px -55% 0px', threshold: 0.01 });
-        
-        sections.forEach(sec => io.observe(sec));
-        
-        // כפתור הורדת PDF גם במובייל
-        document.getElementById('downloadBtnMobile')?.addEventListener('click', () => window.print());
-
-      
-      // אקורדיון גנרי: רק פאנל אחד פתוח בכל סקשן
-      (() => {
-        function initAccordion(sectionId) {
-          const root = document.getElementById(sectionId);
-          if (!root) return;
-      
-          const buttons = Array.from(root.querySelectorAll('.toggle-details[aria-controls]'));
-          const panels = buttons
-            .map(b => document.getElementById(b.getAttribute('aria-controls')))
-            .filter(Boolean);
-
-          // Delegation + עצירת מאזינים אחרים
-          root.addEventListener('click', (e) => {
-            const btn = e.target.closest('.toggle-details');
-            if (!btn || !root.contains(btn)) return;
-      
-            e.preventDefault();
-            e.stopImmediatePropagation();
-      
-            const id = btn.getAttribute('aria-controls');
-            const panel = document.getElementById(id);
-            if (!panel) return;
-      
-            const shouldOpen = btn.getAttribute('aria-expanded') !== 'true';
-      
-            // סוגר הכל בתוך הסקשן
-            panels.forEach(p => p.classList.add('hidden'));
-            buttons.forEach(b => {
-              b.setAttribute('aria-expanded', 'false');
-              const ic = b.querySelector('[data-lucide]');
-              if (ic) ic.style.transform = 'rotate(0deg)';
-            });
-      
-            // פותח רק את הנוכחי (אם היה סגור)
-            if (shouldOpen) {
-              panel.classList.remove('hidden');
-              btn.setAttribute('aria-expanded', 'true');
-              const ic = btn.querySelector('[data-lucide]');
-              if (ic) ic.style.transform = 'rotate(180deg)';
-            }
-          }, true); // capture=true כדי לתפוס לפני מאזינים אחרים
-        }
-      
-        initAccordion('projects');
-        initAccordion('experience');
-      })();
-
-
-            // פתיחת/סגירת הבועה בטאפ במובייל (לא פוגע ב-hover של דסקטופ)
-            document.addEventListener('DOMContentLoaded', () => {
-              const tiger = document.querySelector('.tiger-wrapper');
-              if (!tiger) return;
-          
-              // טאפ/קליק – Toggle
-              tiger.addEventListener('click', () => {
-                // רק במסכים צרים נפעיל את זה; בדסקטופ נשאיר ל-hover לעבוד
-                if (window.matchMedia('(max-width: 768px)').matches) {
-                  tiger.classList.toggle('show-bubble');
-                }
-              });
-          
-              // אופציונלי: סגירה בלחיצה מחוץ לנמר
-              document.addEventListener('click', (e) => {
-                if (!window.matchMedia('(max-width: 768px)').matches) return;
-                if (!tiger.contains(e.target)) tiger.classList.remove('show-bubble');
-              }, true);
-            });
-    
-    </script>
+    <!-- Configuration and Component-based JavaScript -->
+    <script src="src/config.js"></script>
+    <script src="src/components.js"></script>
   </body>
 </html>
