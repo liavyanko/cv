@@ -69,7 +69,7 @@ class MobileNavigation {
 class NavigationHighlighter {
   constructor() {
     this.navLinks = document.querySelectorAll('a[data-nav]');
-    this.sections = ['hero', 'about', 'projects', 'contact']
+    this.sections = ['hero', 'about', 'skills', 'projects', 'contact']
       .map(id => document.getElementById(id))
       .filter(Boolean);
     this.navMap = {};
