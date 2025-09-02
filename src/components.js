@@ -242,7 +242,7 @@ class Analytics {
     
     // Track CV download
     if (events.cvDownload) {
-      document.querySelector('a[href*="LiavYankoCV.png"]')?.addEventListener('click', () => {
+      document.querySelector('a[href*="Liav_CV.pdf"]')?.addEventListener('click', () => {
         this.trackEvent('cv_download', {
           method: 'direct_link'
         });
